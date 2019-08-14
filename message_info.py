@@ -9,8 +9,8 @@ ffline = f_splitted[0].readline().split(" ", 2)
 if ( re.match( r"HTTP+", ffline[0], re.l ) ):
     out1 = ffline[1] + " " + ffline[2]
 else:
-    x = re.search("Host:[^\\n]*\\n", f_splitted[0] + "\n") # +"\n" in case and Host is the last header 
-    host =  f_splitted[0][ x.start() + 5 : x.end() - 1] if x else ""  
+    x = re.search("Host:[^\\n]*\\n", f_splitted[0] + "\n") # +"\n" in case and Host is the last header \
+    host =  f_splitted[0][ x.start() + 5 : x.end() - 1] if x else ""  \
     abs_path = ffline[1].split("?", 1)[0] if len(ffline) == 3 else "/"
     
 print(  )
