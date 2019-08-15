@@ -1,2 +1,1 @@
-# AIBM
 Interview assignment
