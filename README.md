@@ -1,2 +1,2 @@
 # AIBM
-IBM assignment
+Interview assignment
