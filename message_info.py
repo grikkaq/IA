@@ -13,13 +13,13 @@ first_line = file_splitted[0].split("\n", 1)[0].split(" ", 2)
 # Drop empty strings to ensure abs_path was provided or not
 first_line = list(filter(None, first_line)) 
 
-if re.match(r"HTTP+", first_line[0], re.I):
+if re.fullmatch(r"HTTP/.*", first_line[0], re.I):
     message_type = "response"
     out = first_line[1] + " " + first_line[2]
 else:
     message_type = "request"
     # Add LF to the end to find Host if it's the last header 
-    x = re.search("Host:[^\\n]+", file_splitted[0] + "\n") 
+    x = re.search("Host: [^\\n]+", file_splitted[0] + "\n") 
     host =  file_splitted[0][x.start() + len("Host: ") : x.end()] if x else ""  # Port is included
     abs_path = first_line[1].split("?", 1)[0] if len(first_line) == 3 else "/"
     url = "http://" + host + abs_path if (first_line[0] != "OPTIONS" or first_line[1] != "*") else "*"
